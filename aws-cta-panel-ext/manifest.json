@@ -1,0 +1,42 @@
+{
+  "id": "u0000000000000000000550193398",
+  "state": "Testing",
+  "version": "0.0.1",
+  "anchor": "",
+  "panel_height": 300,
+  "clientId": "550193398",
+  "author_name": "twitchrig",
+  "support_email": "support@localhost",
+  "name": "AWS CTA Panel Extension",
+  "description": "Description of extension 550193398.",
+  "summary": "Summary of extension 550193398.",
+  "viewer_url": "https://localhost.rig.twitch.tv:8080/panel.html",
+  "viewer_urls": {
+    "panel": "https://localhost.rig.twitch.tv:8080/panel.html"
+  },
+  "views": {
+    "panel": {
+      "viewer_url": "https://localhost.rig.twitch.tv:8080/panel.html",
+      "height": 300
+    }
+  },
+  "icon_url": "https://media.forgecdn.net/avatars/158/128/636650453584584748.png",
+  "icon_urls": {
+    "100x100": "https://media.forgecdn.net/avatars/158/128/636650453584584748.png"
+  },
+  "screenshot_urls": [
+    "internal/screenshots/test_data.png"
+  ],
+  "asset_urls": null,
+  "installation_count": -42,
+  "can_install": true,
+  "whitelisted_panel_urls": [],
+  "whitelisted_config_urls": [],
+  "required_broadcaster_abilities": [],
+  "eula_tos_url": "",
+  "privacy_policy_url": "",
+  "request_identity_link": false,
+  "vendor_code": "",
+  "sku": "",
+  "bits_enabled": false
+}

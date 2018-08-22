@@ -72,7 +72,6 @@ var app = new Vue({
                 .then((response) => {
                     console.log(response);
                     console.log(response.data.you);
-                    this.ctaText = response.data.you;
                 })
                 .catch((error) => {
                     console.log(error);

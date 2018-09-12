@@ -1,4 +1,21 @@
-// because who wants to type this every time?
+// // because who wants to type this every time?
+// var twitch = window.Twitch.ext;
+// new Vue({
+//     el: '#app',
+//     data: {
+//         message: 'Hello Vue!',
+//         ctaText: '',
+//         isBroadcaster: false,
+//         token: '',
+//         tuid: '',
+//         messages: [],
+//         userId: ''
+//     },
+//     mounted: () => {
+//         console.log('mounted');
+//         this.userId = '123';
+//     }
+// });
 var twitch = window.Twitch.ext;
 var app = new Vue({
     el: '#app',
@@ -9,7 +26,8 @@ var app = new Vue({
             isBroadcaster: false,
             token: '',
             tuid: '',
-            messages: []
+            messages: [],
+            userId: ''
         }
     },
     mounted: function () {
@@ -58,6 +76,8 @@ var app = new Vue({
                     console.log(error);
                 });
         },
+        clickedCTA: function () {
+        },
         sendCTA: function () {
             console.log(this.ctaText);
             if (!this.ctaText) {
@@ -67,7 +87,7 @@ var app = new Vue({
                 method: 'POST',
                 url: 'https://localhost:8081/cta',
                 headers: { 'Authorization': 'Bearer ' + this.token },
-                data: { message: this.ctaText }
+                data: { message: {text: this.ctaText} }
             })
                 .then((response) => {
                     console.log(response);
@@ -80,63 +100,7 @@ var app = new Vue({
     }
 });
 
-twitch.listen('broadcast', function (target, contentType, message) {
-    twitch.rig.log('Received broadcast message');
-    console.log(target);
-    console.log(contentType);
-    console.log(message);
-});
-
-// create the request options for our Twitch API calls
-var requests = {
-    set: createRequest('POST', 'cycle'),
-    get: createRequest('GET', 'query')
-};
-
-function createRequest(type, method) {
-
-    return {
-        type: type,
-        url: 'https://localhost:8081/color/' + method,
-        success: updateBlock,
-        error: logError
-    }
-}
-
-function setAuth(token) {
-    Object.keys(requests).forEach((req) => {
-        twitch.rig.log('Setting auth headers');
-        requests[req].headers = { 'Authorization': 'Bearer ' + token }
-    });
-}
-
 twitch.onContext(function (context) {
+    console.log(context);
     twitch.rig.log(context);
-});
-
-function updateBlock(hex) {
-    twitch.rig.log('Updating block color');
-    $('#color').css('background-color', hex);
-}
-
-function logError(_, error, status) {
-    twitch.rig.log('EBS request returned ' + status + ' (' + error + ')');
-}
-
-function logSuccess(hex, status) {
-    // we could also use the output to update the block synchronously here,
-    // but we want all views to get the same broadcast response at the same time.
-    twitch.rig.log('EBS request returned ' + hex + ' (' + status + ')');
-}
-
-$(function () {
-
-    // when we click the cycle button
-    $('#cycle').click(function () {
-        if (!token) { return twitch.rig.log('Not authorized'); }
-        twitch.rig.log('Requesting a color cycle');
-        $.ajax(requests.set);
-    });
-
-    // listen for incoming broadcast message from our EBS
 });

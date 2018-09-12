@@ -52,6 +52,9 @@ app.use((req, res, next) => {
     return next();
 });
 
+router.get('/heartbeat', (req, res, next) => {
+    res.status(200).send({here: 'iam'});
+});
 app.use(jwt({ secret: Buffer.from(getOption('secret', 'ENV_SECRET', 'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk'), 'base64') }))
 
 router.get('/', (req, res, next) => {
@@ -59,6 +62,13 @@ router.get('/', (req, res, next) => {
     console.log(req.user);
     console.log("Got to GET");
     res.status(200).send({ you: "got it dude." })
+});
+router.get('/link', (req, res, next) => {
+    console.log(req.connection.remoteAddress);
+    console.log(req.query.userId);
+    console.log(req.query.streamId);
+    console.log(req.query.time);
+    res.redirect(req.query.url);
 });
 router.get('/whoami', (req, res, next) => {
     console.log(req.headers);

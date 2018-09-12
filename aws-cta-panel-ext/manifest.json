@@ -30,7 +30,7 @@
   "asset_urls": null,
   "installation_count": -42,
   "can_install": true,
-  "whitelisted_panel_urls": [],
+  "whitelisted_panel_urls": ["https://google.com"],
   "whitelisted_config_urls": [],
   "required_broadcaster_abilities": [],
   "eula_tos_url": "",
